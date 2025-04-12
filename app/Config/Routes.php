@@ -26,3 +26,12 @@ $routes->get('/dashboard', 'Home::index', ['filter' => 'auth']);
 $routes->get('/admin', 'AdminController::index', ['filter' => 'auth:admin']);
 // auth module stop
 
+$routes->group('barang', function ($routes) {
+    $routes->get('/', 'Barang::index');
+    $routes->get('create', 'Barang::create');
+    $routes->post('store', 'Barang::store');
+    $routes->get('edit/(:num)', 'Barang::edit/$1');
+    $routes->post('update/(:num)', 'Barang::update/$1');
+    $routes->get('hapus/(:num)', 'Barang::delete/$1');
+    $routes->get('show/(:num)', 'Barang::show/$1');
+});
