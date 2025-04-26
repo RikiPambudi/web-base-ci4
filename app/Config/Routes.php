@@ -35,3 +35,28 @@ $routes->group('barang', function ($routes) {
     $routes->get('hapus/(:num)', 'Barang::delete/$1');
     $routes->get('show/(:num)', 'Barang::show/$1');
 });
+
+//artikel routes
+// $routes->group('artikel', function ($routes) {
+//     $routes->get('/', 'Artikel::index');
+//     $routes->get('create', 'Artikel::create');
+//     $routes->post('store', 'Artikel::store');
+//     $routes->get('detail/(:any)', 'Artikel::detail/$1');
+//     $routes->get('edit/(:num)', 'Artikel::edit/$1');
+//     $routes->post('update/(:num)', 'Artikel::update/$1');
+//     $routes->post('(:num)/status', 'Artikel::updateStatus/$1');
+//     $routes->delete('(:num)', 'Artikel::delete/$1');
+// });
+
+
+// Artikel Routes
+$routes->group('artikel', function($routes) {
+    $routes->get('/', 'Artikel::index');
+    $routes->get('create', 'Artikel::create');
+    $routes->post('store', 'Artikel::store');
+    $routes->get('detail/(.+)', 'Artikel::detail/$1'); // Menerima semua karakter
+    $routes->get('edit/(:num)', 'Artikel::edit/$1');
+    $routes->post('update/(:num)', 'Artikel::update/$1');
+    $routes->post('(:num)/status', 'Artikel::updateStatus/$1');
+    $routes->delete('(:num)', 'Artikel::delete/$1');
+});
