@@ -4,7 +4,7 @@
 <div class="bg-white p-6 rounded-lg shadow-md">
     <h1 class="text-2xl font-bold mb-6"><?= $title ?></h1>
 
-    <form action="/artikel/store" method="post">
+    <form action="/rikisetiyopambudi/base/public/artikel/store" method="post">
         <?= csrf_field() ?>
 
         <div class="grid grid-cols-1 gap-6">

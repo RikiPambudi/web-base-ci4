@@ -75,27 +75,32 @@ class Artikel extends BaseController
     {
         $artikel = $this->artikelModel->getArtikelBySlug($slug);
 
-        if (!$artikel) {
-            // Try to find by ID if slug contains ID
-            if (is_numeric($slug)) {
-                $artikel = $this->artikelModel->find($slug);
-            }
-
-            if (!$artikel) {
-                throw new PageNotFoundException('Artikel dengan slug "' . $slug . '" tidak ditemukan');
-            }
-
-            // Redirect to correct slug URL if found by ID
-            return redirect()->to('/artikel/detail/' . $artikel['slug']);
+        // Check if $artikel is null or not an array
+        if (is_null($artikel) || !is_array($artikel)) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException(
+                message: 'Artikel dengan slug "' . $slug . '" tidak ditemukan'
+            );
         }
 
+        // Check if the expected keys exist in the array
+        if (!isset($artikel['slug'], $artikel['judul'])) {
+            throw new \CodeIgniter\Exceptions\PageNotFoundException(
+                message: 'Artikel dengan slug "' . $slug . '" tidak ditemukan'
+            );
+        }
+
+        // Proceed with setting up the data for the view
         $data = [
             'title' => $artikel['judul'],
             'artikel' => $artikel
         ];
 
+        // Return the view with the article data
         return view('artikel/detail', $data);
     }
+
+
+
 
     // Edit form
     public function edit($id)
@@ -103,7 +108,8 @@ class Artikel extends BaseController
         $artikel = $this->artikelModel->where('is_deleted', '0')->find($id);
 
         if (!$artikel) {
-            throw new PageNotFoundException('Artikel tidak ditemukan');
+            // throw new PageNotFoundException('Artikel tidak ditemukan');
+            echo $artikel;
         }
 
         $data = [

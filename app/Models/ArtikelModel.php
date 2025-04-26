@@ -43,24 +43,24 @@ class ArtikelModel extends Model
     public function getArtikelBySlug($slug)
     {
         // Try exact match first
-        $artikel = $this->where('slug', $slug)
-            ->where('is_deleted', '0')
+        $artikel = $this->where('slug', "test")
+            // ->where('is_deleted', '0')
             ->first();
 
-        if (!$artikel) {
-            // Try case insensitive
-            $artikel = $this->where('LOWER(slug)', strtolower($slug))
-                ->where('is_deleted', '0')
-                ->first();
-        }
+        // if (!$artikel) {
+        //     // Try case insensitive
+        //     $artikel = $this->where('LOWER(slug)', strtolower($slug))
+        //         // ->where('is_deleted', '0')
+        //         ->first();
+        // }
 
-        if (!$artikel) {
-            // Try with URL decoded
-            $decodedSlug = urldecode($slug);
-            $artikel = $this->where('slug', $decodedSlug)
-                ->where('is_deleted', '0')
-                ->first();
-        }
+        // if (!$artikel) {
+        //     // Try with URL decoded
+        //     $decodedSlug = urldecode($slug);
+        //     $artikel = $this->where('slug', $decodedSlug)
+        //         // ->where('is_deleted', '0')
+        //         ->first();
+        // }
 
         return $artikel;
     }

@@ -4,7 +4,7 @@
 <div class="bg-white p-6 rounded-lg shadow-md">
     <h1 class="text-2xl font-bold mb-6"><?= $title ?></h1>
 
-    <form action="/artikel/update/<?= $artikel['id'] ?>" method="post">
+    <form action="/rikisetiyopambudi/base/public/artikel/update/<?= $artikel['id'] ?>" method="post">
         <?= csrf_field() ?>
 
         <div class="grid grid-cols-1 gap-6">
@@ -82,7 +82,7 @@
 
             <!-- Submit Button -->
             <div class="flex justify-end space-x-4">
-                <a href="/artikel/detail/<?= $artikel['slug'] ?>"
+                <a href="/rikisetiyopambudi/base/public/artikel/detail/<?= $artikel['slug'] ?>"
                     class="bg-gray-500 hover:bg-gray-600 text-white px-6 py-2 rounded">
                     <i class="fas fa-times mr-2"></i>Batal
                 </a>
